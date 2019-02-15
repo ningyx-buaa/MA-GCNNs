@@ -12,8 +12,8 @@ Then, we calculate mean accuracy and std according to evaluation accuracy from d
 It is worth noting that we actually tune hyperparameters each fold so that we can reach our best score, 
 just in case that the model falls into the local optima, which cannot represent our model's normal performance.
 
-Created by GongQiran on 18/8/4.
-Copyright 2018 GongQiran. All rights reserved.
+Created on 18/8/4.
+Copyright 2018. All rights reserved.
 
 '''
 
