@@ -7,8 +7,8 @@ Our data are numpy files, and we use ten-fold cross validation.
 
 These functions are used in train.py
 
-Created by GongQiran on 18/8/4.
-Copyright 2018 GongQiran. All rights reserved.
+Created on 18/8/4.
+Copyright 2018. All rights reserved.
 
 '''
 
