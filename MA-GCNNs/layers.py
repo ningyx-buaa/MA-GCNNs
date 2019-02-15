@@ -4,8 +4,8 @@
 '''
 
 
-Modified by NingYuanxing on 18/8/4.
-Copyright 2018 NingYuanxing. All rights reserved.
+Modified on 18/8/4.
+Copyright 2018. All rights reserved.
 License from MIT.
 
 '''
