@@ -1,1 +1,1 @@
-# Motif-GCNN-Attention
+# MA-GCNNs
