@@ -2,16 +2,16 @@
 # coding: utf-8
 
 '''
-This file contains different models, including our baseline: MotifGCN and our mutant: MotifAttGCN.
-MotifGCN:
+This file contains different models, including our baseline: M-GCNNs and our mutant: MA-GCNNs.
+M-GCNNs:
     convolution layer + convolution layer + fully connected layer + fully connected layer + fully connected layer
-MotifAttGCN:
+MA-GCNNs:
     convolution layer + convolution layer + attention layer + ensemble layer
 
 hid_units, n_heads, residual, nonlinearity are attention layer's hyperparameters.
 
-Created by GongQiran on 18/8/4.
-Copyright 2018 GongQiran. All rights reserved.
+Created on 18/8/4.
+Copyright 2018. All rights reserved.
 
 '''
 
@@ -25,7 +25,7 @@ residual = False
 nonlinearity = tf.nn.elu
 attention_model = layers.GAT()
 
-class MotifAttGCN(object):
+class MAGCNNs(object):
     def __init__(self, session, 
                  batch_size,
                  class_size,
@@ -135,7 +135,7 @@ class MotifAttGCN(object):
         
         return acc, pred
 
-class MotifGCN(object):
+class MGCNNs(object):
     def __init__(self, session, 
                  batch_size,
                  class_size,
