@@ -1,36 +1,33 @@
-import igraph as ig
+import numpy as np
 
-class DataPreprocessor(object):
-    # test ok
-    def __init__(self, node_sequence_size, receptive_field_size, num_channels):
-        self.node_sequence_size = node_sequence_size
-        self.receptive_field_size = receptive_field_size
-        self.channels = num_channels
-    def execute(self, graph):
-        self.channels.set_graph(graph)
+events = np.load("event_label.npy")
+storys = np.load("story_label.npy")
+event = []
+story = []
+event_set = set()
+story_set = set()
+event_num = 0
+story_num = 0
+l = events.shape[0]
+print(l)
+for i in range(5000):
+   story_temp = events[i]
+   event_temp = storys[i]
+   if story_temp not in story_set:
+      story_num += 1
+      story_set.add(story_temp)
+   if event_temp not in event_set:
+      event_num += 1
+      event_set.add(event_temp)
+   event.append(event_num-1)
+   story.append(story_num-1)
 
-        # calculate centrality and make it to be vertex properties
-        bv = graph.close
-        graph.vp['betweenness'] = graph.new_vertex_property('double')
-        graph.vp.betweenness = bv
+np.save("ring_story_label.npy",np.array(story))
+np.save("ring_event_label.npy",np.array(event))
+print(event_num)
+print(story_num)
 
-        # decide a node sequence
-        num_vertices = graph.num_vertices()
-        node_sequence = sorted(
-            list(graph.vertices()),
-            key=lambda x: bv[x],
-            reverse=True)[: min(num_vertices, self.node_sequence_size)]
+xdata = np.load("ring_xdata.npy")
+xdata = xdata[0:5000]
+np.save("ring_xdata_new.npy",np.array(xdata))
 
-        receptive_field_maker = ReceptiveFieldMaker(self.receptive_field_size)
-        receptive_field_maker.set_graph(graph)
-
-        return self.make_input_for_cnn(node_sequence, receptive_field_maker)
-
-graph =  ig.Read_GraphMLz('./unittest_files/mutag_152.graphml')
-node_sequence_size = 18
-receptive_field_size = 10
-num_channels = 1
-
-preprocessor = DataPreprocessor(node_sequence_size, receptive_field_size, num_channels)
-x = preprocessor.execute(graph)
-self.assertTrue((1, receptive_field_size, node_sequence_size) == x.shape)
